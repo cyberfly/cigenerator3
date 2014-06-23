@@ -1211,7 +1211,7 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 
 	$list_view .= 			'<td>
                               <a href="<?php echo site_url(\''.$this->controller_name.'/edit_'.$this->object_name.'/\'.$row->'.$this->object_id.'.\'/\'.encode_id($row->'.$this->object_id.')); ?>" class="sepV_a" title="Edit"><i class="icon-pencil"></i></a>
-                              <a href="#" class="delete" id="<?php echo encode_ajax_id($row->'.$this->object_id.'); ?>" title="Delete"><i class="icon-trash"></i></a>
+                              <a href="#" class="delete" data-id="<?php echo encode_ajax_id($row->'.$this->object_id.'); ?>" title="Delete"><span class="glyphicon-class">glyphicon glyphicon-trash</span></a>
                           	</td>
                         </tr>
                         <?php } } else { ?>						
@@ -1236,20 +1236,19 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 
         $(".delete").click(function() {
 
-          var ajax_id = $(this).attr(\'id\');
+          var ajax_id = $(this).attr(\'data-id\');
           var row = $(this).closest(\'tr\');
 
-          apprise(\'Are you sure want to delete this '.$this->object_name.'?\', {\'verify\':true}, function(r)
+          var choice = confirm(\'Are you sure want to delete this '.$this->object_name.'?\', {\'verify\':true}, function(r)
+          
+          if(choice)
           {
-            if(r)
-            {
-                deleteAjax(ajax_id,row);
-            }
-            else
-            {
-                return false;
-            }
-          });
+              deleteAjax(ajax_id,row);
+          }
+          else
+          {
+              return false;
+          }
 
         });
 
@@ -1264,22 +1263,16 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
                 },
                 success : function(data) {
                     if(data==\'1\')
-                    {
-                        var oTable = $(\'#dt_d\').dataTable();
-
-                        var pos = oTable.fnGetPosition(row.get(0));
-
-                        oTable.fnDeleteRow(pos);
-
-                        apprise(\'The '.$this->object_name.' has been deleted\');
+                    {                       
+                        alert(\'The '.$this->object_name.' has been deleted\');
                     }
                     else if(data==\'2\')
                     {
-                        apprise(\'Error.\');
+                        alert(\'Error.\');
                     }
                     else
                     {
-                        apprise(\'Error.\');
+                        alert(\'Error.\');
                     }
                 },
                 error : function(XMLHttpRequest, textStatus, errorThrown) {
