@@ -6,7 +6,7 @@
 
     <?php $this->load->view('template/show_error'); ?>
 
-	<form class="form-horizontal" method="post" action="<?php echo site_url('generator/step_2'); ?>" enctype="multipart/form-data" >
+	<form class="form-horizontal" method="post" action="<?php echo site_url('thegenerator/step_2'); ?>" enctype="multipart/form-data" >
     <fieldset>
 
     <div class="control-group">

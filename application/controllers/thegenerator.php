@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Generator extends CI_Controller {
+class Thegenerator extends CI_Controller {
 
 	public function __construct()
     {
@@ -18,10 +18,10 @@ class Generator extends CI_Controller {
 
 		$data['table_records'] = $this->db->list_tables();
 
-		$data['main'] = 'generator/generate_view';
+		$data['main'] = 'thegenerator/generate_view';
 		$data['no_sidebar'] = 'Y';
 
-		$this->load->view('template/template',$data);
+		$this->load->view('base_template/base',$data);
 	}
 
 	public function step_2()
@@ -56,10 +56,10 @@ class Generator extends CI_Controller {
 		$data['table_records'] = $this->db->list_tables();
 		$data['table_fields'] = $this->db->list_fields($table_name);
 
-		$data['main'] = 'generator/generate_view_2';
+		$data['main'] = 'thegenerator/generate_view_2';
 		$data['no_sidebar'] = 'Y';
 
-		$this->load->view('template/template',$data);
+		$this->load->view('base_template/base',$data);
 	}
 
 	public function generate_it()
@@ -218,10 +218,10 @@ class Generator extends CI_Controller {
 		$data['js_content'] = $js_content;
 		$data['lang_content'] = $lang_content;
 		$data['object_content'] = $object_content;
-		$data['main'] = 'generator/result';
+		$data['main'] = 'thegenerator/result';
 		$data['no_sidebar'] = 'Y';
 
-		$this->load->view('template/template',$data);
+		$this->load->view('base_template/base',$data);
 
 	}
 
@@ -342,7 +342,7 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 	    $data[\'main\'] = \''.$this->object_name.'/'.$this->object_name.'_list\';
 	    $data[\'js_function\'] = array(\''.$this->object_name.'_list\');
 
-		$this->load->view(\'template/template\',$data);
+		$this->load->view(\'base_template/base\',$data);
 	}
 
 	function add_'.$this->object_name.'()
@@ -449,7 +449,7 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 
 	    	$data[\'main\'] = \''.$this->object_name.'/add_'.$this->object_name.'\';
 
-			$this->load->view(\'templates/template\',$data);
+			$this->load->view(\'base_template/base\',$data);
 	    }
 	}
 
@@ -592,7 +592,7 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 
 	    	$data[\'main\'] = \''.$this->object_name.'/edit_'.$this->object_name.'\';
 
-			$this->load->view(\'templates/template\',$data);
+			$this->load->view(\'base_template/base\',$data);
 	    }
 	}
 

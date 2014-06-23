@@ -6,7 +6,7 @@
 
     <?php $this->load->view('template/show_error'); ?>
 
-	<form class="form-vertical" method="post" action="<?php echo site_url('generator/generate_it'); ?>" enctype="multipart/form-data" >
+	<form class="form-vertical" method="post" action="<?php echo site_url('thegenerator/generate_it'); ?>" enctype="multipart/form-data" >
     <fieldset>
 
     <div class="well">
