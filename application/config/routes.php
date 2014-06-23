@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "generator";
+$route['default_controller'] = "thegenerator";
 $route['404_override'] = '';
 
 

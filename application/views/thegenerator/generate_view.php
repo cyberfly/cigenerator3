@@ -4,7 +4,7 @@
 	<h1>Select Table (1 of 2) <small>Select table to generate MVC</small></h1>
 	</div>
 
-    <?php $this->load->view('template/show_error'); ?>
+    <?php $this->load->view('base_template/show_error'); ?>
 
 	<form class="form-horizontal" method="post" action="<?php echo site_url('thegenerator/step_2'); ?>" enctype="multipart/form-data" >
     <fieldset>

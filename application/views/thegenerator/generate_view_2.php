@@ -4,7 +4,7 @@
 	<h1>Select Table (2 of 2) <small>Select table fields for View</small></h1>
 	</div>
 
-    <?php $this->load->view('template/show_error'); ?>
+    <?php $this->load->view('base_template/show_error'); ?>
 
 	<form class="form-vertical" method="post" action="<?php echo site_url('thegenerator/generate_it'); ?>" enctype="multipart/form-data" >
     <fieldset>

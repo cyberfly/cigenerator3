@@ -74,7 +74,7 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
-          <?php $this->load->view('template/header'); ?>
+          <?php $this->load->view('base_template/header'); ?>
         </div>
       </div>
     </div>
@@ -85,7 +85,7 @@
         <?php if(!isset($no_sidebar)){ ?>
 
         <div class="span3">
-          <?php $this->load->view('template/sidebar'); ?>
+          <?php $this->load->view('base_template/sidebar'); ?>
         </div><!--/span-->
         <div class="span9">
           <?php $this->load->view($main); ?>
@@ -104,7 +104,7 @@
       <hr>
 
       <footer>
-        <?php $this->load->view('template/footer'); ?>
+        <?php $this->load->view('base_template/footer'); ?>
       </footer>
 
     </div><!--/.fluid-container-->

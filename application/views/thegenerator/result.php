@@ -4,7 +4,7 @@
 	<h1>Generator Result <small>Code that was generated</small></h1>
 	</div>
 
-    <?php $this->load->view('template/show_error'); ?>
+    <?php $this->load->view('base_template/show_error'); ?>
 
     <!-- <ul class="nav nav-tabs">
     <li class="active"><a href="#tab1" data-toggle="tab">Add Form</a></li>
