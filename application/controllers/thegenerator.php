@@ -636,13 +636,11 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 
 		$add_view = '
 
-	<div class="row-fluid">
-		<div class="span12">
+	<div class="row">
+		<div class="col-md-12">
 			<h3 class="heading">'.$add_form_header_key.'</h3>
-				<div class="row-fluid">
-					<div class="span8">
-						<form class="form-horizontal" action="<?php echo site_url(\''.$this->controller_name.'/add_'.$this->object_name.'\'); ?>" method="post" >
-							<fieldset>
+				<form class="form-horizontal" action="<?php echo site_url(\''.$this->controller_name.'/add_'.$this->object_name.'\'); ?>" method="post" >
+					<fieldset>
 		';
 
     	foreach($this->selected_attribute as $key => $value)
@@ -677,10 +675,10 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 			if($this->input->post("show_in_form_$key"))
 			{
 				$add_view .= '
-								<?php $error = \'\'; if(form_error(\''.$value.'\')){ $error = \'error\'; } ?>
+								<?php $error = \'\'; if(form_error(\''.$value.'\')){ $error = \'has-error\'; } ?>
 
-							   	<div class="control-group formSep <?php echo $error; ?>">
-							        <label for="select01" class="control-label">'.$form_label_key.' '.$required_symbol.'</label>
+							   	<div class="form-group <?php echo $error; ?>">
+							        <label for="" class="control-label">'.$form_label_key.' '.$required_symbol.'</label>
 							        <div class="controls">';
 
 				if($this->input->post("input_type_$key")=='dynamic_dropdown')
@@ -689,7 +687,7 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 					$dropdown_default_key = generate_form_dropdown_default_key($form_label,$this->use_lang);
 
 					$add_view .= '
-									    <select name="'.$value.'" id="'.$value.'" class="input-xlarge chosen">
+									    <select name="'.$value.'" id="'.$value.'" class="form-control chosen">
 							                <option value="">'.$dropdown_default_key.'</option>
 							                <?php if(isset($'.$dynamic_records.')) : foreach($'.$dynamic_records.' as $row) : ?>
 											<option value="<?php echo $row->'.$value.'; ?>" <?php echo set_select(\''.$value.'\', $row->'.$value.'); ?>  >
@@ -707,7 +705,7 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 					$option_array = $this->construct_option_array($input_option);
 
 					$add_view .= '
-									    <select name="'.$value.'" id="'.$value.'" class="input-xlarge chosen">
+									    <select name="'.$value.'" id="'.$value.'" class="form-control chosen">
 							                <option value="">'.$dropdown_default_key.'</option>';
 
 							 if(!empty($option_array))
@@ -802,14 +800,14 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 				else if($this->input->post("input_type_$key")=='text')
 				{
 					$add_view .= '
-										<input type="text" name="'.$value.'" id="'.$value.'" value="<?php echo set_value(\''.$value.'\'); ?>" class="input-xlarge"  >';
+										<input type="text" name="'.$value.'" id="'.$value.'" value="<?php echo set_value(\''.$value.'\'); ?>" class="form-control"  >';
 
 				}
 				else if($this->input->post("input_type_$key")=='date')
 				{
 					$add_view .= '
 										<div class="input-append date form_date" data-date-format="dd-mm-yyyy">
-											<input class="input-xlarge" type="text" name="'.$value.'" id="'.$value.'" value="<?php echo set_value(\''.$value.'\'); ?>" /><span class="add-on"><i class="icon-calendar"></i></span>
+											<input class="form-control" type="text" name="'.$value.'" id="'.$value.'" value="<?php echo set_value(\''.$value.'\'); ?>" /><span class="add-on"><i class="icon-calendar"></i></span>
 										</div>';
 
 				}
@@ -831,17 +829,15 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 		}
 
 			$add_view .= '
-								<div class="control-group">
+								<div class="form-group">
 									<div class="controls">
-										<button class="btn btn-gebo" type="submit">'.$this->save_button_label.'</button>
-										<a class="btn" href="<?php echo site_url(\''.$this->controller_name.'\'); ?>">'.$this->cancel_button_label.'</a>
+										<button class="btn btn-primary" type="submit">'.$this->save_button_label.'</button>
+										<a class="btn btn-default" href="<?php echo site_url(\''.$this->controller_name.'\'); ?>">'.$this->cancel_button_label.'</a>
 									</div>
 								</div>
 
-								</fieldset>
-							</form>
-					</div>
-				</div>
+					</fieldset>
+				</form>
 			</div>
 		</div>';
 
@@ -854,11 +850,9 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 
 		$edit_view = '
 
-	<div class="row-fluid">
-		<div class="span12">
-			<h3 class="heading">'.$edit_form_header_key.'</h3>
-				<div class="row-fluid">
-					<div class="span8">
+	<div class="row">
+		<div class="col-md-12">
+			<h3 class="heading">'.$edit_form_header_key.'</h3>				
 						<form class="form-horizontal" action="<?php echo site_url(\''.$this->controller_name.'/edit_'.$this->object_name.'\'); ?>" method="post" >
 							<fieldset>
 		';
@@ -899,10 +893,10 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 				$records_key = $this->object_records.'->'.$value;
 
 				$edit_view .= '
-								<?php $error = \'\'; if(form_error(\''.$value.'\')){ $error = \'error\'; } ?>
+								<?php $error = \'\'; if(form_error(\''.$value.'\')){ $error = \'has-error\'; } ?>
 
-							   	<div class="control-group formSep <?php echo $error; ?>">
-							        <label for="select01" class="control-label">'.$form_label_key.' '.$required_symbol.'</label>
+							   	<div class="form-group <?php echo $error; ?>">
+							        <label for="" class="control-label">'.$form_label_key.' '.$required_symbol.'</label>
 							        <div class="controls">';
 
 				if($this->input->post("input_type_$key")=='dynamic_dropdown')
@@ -911,7 +905,7 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 					$dropdown_default_key = generate_form_dropdown_default_key($form_label,$this->use_lang);
 
 					$edit_view .= '
-									    <select name="'.$value.'" id="'.$value.'" class="input-xlarge chosen">
+									    <select name="'.$value.'" id="'.$value.'" class="form-control chosen">
 							                <option value="">'.$dropdown_default_key.'</option>
 							                <?php if(isset($'.$dynamic_records.')) : foreach($'.$dynamic_records.' as $row) :
 							                	$selected = FALSE; if('.$records_key.'==$row->'.$value.'){ $selected = TRUE; }
@@ -955,7 +949,7 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 										?>';
 
 					$edit_view .= '
-									    <select name="'.$value.'" id="'.$value.'" class="input-xlarge chosen">
+									    <select name="'.$value.'" id="'.$value.'" class="form-control chosen">
 							                <option value="">'.$dropdown_default_key.'</option>';
 
 							 if(!empty($option_array))
@@ -1114,14 +1108,14 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 				else if($this->input->post("input_type_$key")=='text')
 				{
 					$edit_view .= '
-										<input type="text" name="'.$value.'" id="'.$value.'" value="<?php echo set_value(\''.$value.'\','.$records_key.'); ?>" class="input-xlarge"  >';
+										<input type="text" name="'.$value.'" id="'.$value.'" value="<?php echo set_value(\''.$value.'\','.$records_key.'); ?>" class="form-control"  >';
 
 				}
 				else if($this->input->post("input_type_$key")=='date')
 				{
 					$edit_view .= '
 										<div class="input-append date form_date" data-date-format="dd-mm-yyyy">
-											<input class="input-xlarge" type="text" name="'.$value.'" id="'.$value.'" value="<?php echo set_value(\''.$value.'\',prepare_php_date('.$records_key.')); ?>" /><span class="add-on"><i class="icon-calendar"></i></span>
+											<input class="form-control" type="text" name="'.$value.'" id="'.$value.'" value="<?php echo set_value(\''.$value.'\',prepare_php_date('.$records_key.')); ?>" /><span class="add-on"><i class="icon-calendar"></i></span>
 										</div>';
 
 				}
@@ -1133,7 +1127,7 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 				}
 
 				$edit_view .= '
-										<?php echo form_error(\''.$value.'\', \'<span class="help-inline">\', \'</span>\'); ?>
+										<?php echo form_error(\''.$value.'\', \'<span class="help-block">\', \'</span>\'); ?>
 									</div>
 							  	</div>
 							  	';
@@ -1143,19 +1137,17 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 		}
 
 			$edit_view .= '
-								<div class="control-group">
+								<div class="form-group">
 									<div class="controls">
-										<button class="btn btn-gebo" type="submit">'.$this->save_change_button_label.'</button>
-										<a class="btn" href="<?php echo site_url(\''.$this->controller_name.'\'); ?>">'.$this->cancel_button_label.'</a>
+										<button class="btn btn-primary" type="submit">'.$this->save_change_button_label.'</button>
+										<a class="btn btn-default" href="<?php echo site_url(\''.$this->controller_name.'\'); ?>">'.$this->cancel_button_label.'</a>
 									</div>
 								</div>
 
 								<input type="hidden" name="'.$this->object_id.'" value="<?php echo encode_form_id('.$this->object_records.'->'.$this->object_id.'); ?>" />
 
-								</fieldset>
-							</form>
-					</div>
-				</div>
+					</fieldset>
+				</form>
 			</div>
 		</div>';
 
@@ -1166,15 +1158,13 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 	{
 		$list_view = '
 
-	<div class="row-fluid">
-		<div class="span12">
+	<div class="row">
+		<div class="col-md-12">
 			<h3 class="heading">'.ucfirst($this->object_name).' List</h3>
 
-				<div class="row-fluid">
-					<div class="span12">
-						<ul class="dshb_icoNav tac">
-							<li><a href="<?php echo site_url(\''.$this->controller_name.'/add_'.$this->object_name.'\'); ?>" style="background-image: url(<?php echo base_url(); ?>assets/img/gCons/add-item.png)">New '.ucfirst($this->object_name).'</a></li>
-						</ul>
+				<div class="row">
+					<div class="col-md-12">
+						<a href="<?php echo site_url(\''.$this->controller_name.'/add_'.$this->object_name.'\'); ?>" class="btn btn-primary" >Add '.ucfirst($this->object_name).'</a>
 					</div>
 				</div>
 
@@ -1196,13 +1186,17 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
                     </thead>
                     <tbody>
 	                    <?php
-						    $num = 0; if(isset('.$this->object_records.')) :foreach('.$this->object_records.' as $row): $num++;
+						    $num = 0; if(isset('.$this->object_records.') && !empty('.$this->object_records.')) { foreach('.$this->object_records.' as $row){ $num++;
 						?>
 						<tr>
 							<td></td>'. "\n\t\t\t\t\t\t\t";
 
+		$colspan_count = 0;					
+
     	foreach($this->selected_attribute as $key => $value)
 		{
+	  		$colspan_count++;
+
 	  		if($foreign_key = $this->input->post("foreign_relationship_$key"))
 	  		{
 	  			$td_value = $foreign_key;
@@ -1220,9 +1214,11 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
                               <a href="#" class="delete" id="<?php echo encode_ajax_id($row->'.$this->object_id.'); ?>" title="Delete"><i class="icon-trash"></i></a>
                           	</td>
                         </tr>
-                        <?php endforeach; ?>
-						<?php else : ?>
-						<?php endif; ?>
+                        <?php } } else { ?>						
+						<tr colspan="'.$colspan_count.'">
+							<td>No records</td>
+						</tr>
+						<?php } ?>
                     </tbody>
             	</table>
       	</div>
