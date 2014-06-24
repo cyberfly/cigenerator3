@@ -255,7 +255,8 @@ class '.ucfirst($this->model_name).' extends MY_Model {
 
     $model .= '
 
-        $this->db->select(\'*\');
+    	//if want select specific column, uncomment below and put the column name
+        //$this->db->select(\'*\');
 
         return $this;
     }
@@ -636,11 +637,17 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 
 		$add_view = '
 
-	<div class="row">
+	
 		<div class="col-md-12">
-			<h3 class="heading">'.$add_form_header_key.'</h3>
+			<div class="portlet box blue">
+				<div class="portlet-title">			
+					<div class="caption">
+						<i class="fa fa-gift"></i> '.$add_form_header_key.'
+					</div>
+				</div>
+				<div class="portlet-body form">
 				<form class="form-horizontal" action="<?php echo site_url(\''.$this->controller_name.'/add_'.$this->object_name.'\'); ?>" method="post" >
-					<fieldset>
+					
 		';
 
     	foreach($this->selected_attribute as $key => $value)
@@ -836,10 +843,12 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 									</div>
 								</div>
 
-					</fieldset>
+					
 				</form>
+				</div>
+				</div>
 			</div>
-		</div>';
+		';
 
 		return  $add_view;
 	}
@@ -849,12 +858,17 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 		$edit_form_header_key = generate_edit_form_header_key($this->object_name,$this->use_lang);
 
 		$edit_view = '
-
-	<div class="row">
+	
 		<div class="col-md-12">
-			<h3 class="heading">'.$edit_form_header_key.'</h3>				
+			<div class="portlet box blue">
+				<div class="portlet-title">
+					<div class="caption">
+						<i class="fa fa-gift"></i> '.$edit_form_header_key.'
+					</div>
+				</div>
+				<div class="portlet-body form">				
 						<form class="form-horizontal" action="<?php echo site_url(\''.$this->controller_name.'/edit_'.$this->object_name.'\'); ?>" method="post" >
-							<fieldset>
+							
 		';
 
     	foreach($this->selected_attribute as $key => $value)
@@ -1146,10 +1160,11 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 
 								<input type="hidden" name="'.$this->object_id.'" value="<?php echo encode_form_id('.$this->object_records.'->'.$this->object_id.'); ?>" />
 
-					</fieldset>
 				</form>
+				</div>
+				</div>
 			</div>
-		</div>';
+			';
 
 		return  $edit_view;
 	}
@@ -1211,11 +1226,11 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 
 	$list_view .= 			'<td>
                               <a href="<?php echo site_url(\''.$this->controller_name.'/edit_'.$this->object_name.'/\'.$row->'.$this->object_id.'.\'/\'.encode_id($row->'.$this->object_id.')); ?>" class="sepV_a" title="Edit"><i class="icon-pencil"></i></a>
-                              <a href="#" class="delete" data-id="<?php echo encode_ajax_id($row->'.$this->object_id.'); ?>" title="Delete"><span class="glyphicon-class">glyphicon glyphicon-trash</span></a>
+                              <a href="#" class="delete" data-id="<?php echo encode_ajax_id($row->'.$this->object_id.'); ?>" title="Delete"><i class="icon-trash"></i></a>
                           	</td>
                         </tr>
                         <?php } } else { ?>						
-						<tr colspan="'.$colspan_count.'">
+						<tr colspan="<?php echo $colspan_count; ?>">
 							<td>No records</td>
 						</tr>
 						<?php } ?>
@@ -1265,6 +1280,7 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
                     if(data==\'1\')
                     {                       
                         alert(\'The '.$this->object_name.' has been deleted\');
+                        row.hide();
                     }
                     else if(data==\'2\')
                     {
