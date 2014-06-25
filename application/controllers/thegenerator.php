@@ -649,6 +649,8 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 				<form class="form-horizontal" role="form" action="<?php echo site_url(\''.$this->controller_name.'/add_'.$this->object_name.'\'); ?>" method="post" >
 					<div class="form-body">
 
+						<?php $this->load->view(\'base_template/base_alert\'); ?>
+
 		';
 
     	foreach($this->selected_attribute as $key => $value)
@@ -870,6 +872,8 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 				<div class="portlet-body form">				
 						<form class="form-horizontal" action="<?php echo site_url(\''.$this->controller_name.'/edit_'.$this->object_name.'\'); ?>" method="post" >
 							<div class="form-body">
+
+								<?php $this->load->view(\'base_template/base_alert\'); ?>
 
 		';
 
@@ -1186,6 +1190,8 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 					</div>
 				</div>
 				<div class="portlet-body">
+
+					<?php $this->load->view(\'base_template/base_alert\'); ?>
 
 					<div class="row">
 						<div class="col-md-12">
