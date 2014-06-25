@@ -646,8 +646,9 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 					</div>
 				</div>
 				<div class="portlet-body form">
-				<form class="form-horizontal" action="<?php echo site_url(\''.$this->controller_name.'/add_'.$this->object_name.'\'); ?>" method="post" >
-					
+				<form class="form-horizontal" role="form" action="<?php echo site_url(\''.$this->controller_name.'/add_'.$this->object_name.'\'); ?>" method="post" >
+					<div class="form-body">
+
 		';
 
     	foreach($this->selected_attribute as $key => $value)
@@ -685,8 +686,8 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 								<?php $error = \'\'; if(form_error(\''.$value.'\')){ $error = \'has-error\'; } ?>
 
 							   	<div class="form-group <?php echo $error; ?>">
-							        <label for="" class="control-label">'.$form_label_key.' '.$required_symbol.'</label>
-							        <div class="controls">';
+							        <label for="" class="col-md-2 control-label">'.$form_label_key.' '.$required_symbol.'</label>
+							        <div class="col-md-5">';
 
 				if($this->input->post("input_type_$key")=='dynamic_dropdown')
 				{
@@ -836,14 +837,14 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 		}
 
 			$add_view .= '
-								<div class="form-group">
-									<div class="controls">
-										<button class="btn btn-primary" type="submit">'.$this->save_button_label.'</button>
-										<a class="btn btn-default" href="<?php echo site_url(\''.$this->controller_name.'\'); ?>">'.$this->cancel_button_label.'</a>
-									</div>
-								</div>
-
-					
+								
+					</div>
+					<div class="form-actions fluid">
+						<div class="col-md-offset-2 col-md-10">
+							<button class="btn btn-success" type="submit">'.$this->save_button_label.'</button>
+							<a class="btn btn-default" href="<?php echo site_url(\''.$this->controller_name.'\'); ?>">'.$this->cancel_button_label.'</a>
+						</div>
+					</div>	
 				</form>
 				</div>
 				</div>
@@ -868,7 +869,8 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 				</div>
 				<div class="portlet-body form">				
 						<form class="form-horizontal" action="<?php echo site_url(\''.$this->controller_name.'/edit_'.$this->object_name.'\'); ?>" method="post" >
-							
+							<div class="form-body">
+
 		';
 
     	foreach($this->selected_attribute as $key => $value)
@@ -910,8 +912,8 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 								<?php $error = \'\'; if(form_error(\''.$value.'\')){ $error = \'has-error\'; } ?>
 
 							   	<div class="form-group <?php echo $error; ?>">
-							        <label for="" class="control-label">'.$form_label_key.' '.$required_symbol.'</label>
-							        <div class="controls">';
+							        <label for="" class="col-md-2 control-label">'.$form_label_key.' '.$required_symbol.'</label>
+							        <div class="col-md-5">';
 
 				if($this->input->post("input_type_$key")=='dynamic_dropdown')
 				{
@@ -1150,16 +1152,17 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 
 		}
 
-			$edit_view .= '
-								<div class="form-group">
-									<div class="controls">
-										<button class="btn btn-primary" type="submit">'.$this->save_change_button_label.'</button>
-										<a class="btn btn-default" href="<?php echo site_url(\''.$this->controller_name.'\'); ?>">'.$this->cancel_button_label.'</a>
-									</div>
-								</div>
+			$edit_view .= '								
 
-								<input type="hidden" name="'.$this->object_id.'" value="<?php echo encode_form_id('.$this->object_records.'->'.$this->object_id.'); ?>" />
-
+					</div>
+					<div class="form-actions fluid">
+						<div class="col-md-offset-2 col-md-10">							
+							<input type="hidden" name="'.$this->object_id.'" value="<?php echo encode_form_id('.$this->object_records.'->'.$this->object_id.'); ?>" />
+							
+							<button class="btn btn-success" type="submit">'.$this->save_change_button_label.'</button>
+							<a class="btn btn-default" href="<?php echo site_url(\''.$this->controller_name.'\'); ?>">'.$this->cancel_button_label.'</a>
+						</div>
+					</div>			
 				</form>
 				</div>
 				</div>
@@ -1173,20 +1176,29 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 	{
 		$list_view = '
 
-	<div class="row">
+	
 		<div class="col-md-12">
-			<h3 class="heading">'.ucfirst($this->object_name).' List</h3>
-
-				<div class="row">
-					<div class="col-md-12">
-						<a href="<?php echo site_url(\''.$this->controller_name.'/add_'.$this->object_name.'\'); ?>" class="btn btn-primary" >Add '.ucfirst($this->object_name).'</a>
+			
+			<div class="portlet box purple">
+				<div class="portlet-title">
+					<div class="caption">
+						<i class="fa fa-comments"></i> '.ucfirst($this->object_name).' List
 					</div>
 				</div>
+				<div class="portlet-body">
 
-				<table class="table table-striped table-bordered" id="dt_d">
-                    <thead>
-                        <tr>
-                        	<th>No.</th>
+					<div class="row">
+						<div class="col-md-12">
+							<a href="<?php echo site_url(\''.$this->controller_name.'/add_'.$this->object_name.'\'); ?>" class="btn btn-primary" >Add '.ucfirst($this->object_name).'</a>
+						</div>
+					</div>
+
+					<div class="table-scrollable">
+
+						<table class="table table-striped table-bordered table-hover" id="dt_d">
+		                    <thead>
+		                        <tr>
+		                        	<th>No.</th>
                         ';
 
         foreach($this->selected_attribute as $key => $value)
@@ -1204,7 +1216,7 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
 						    $num = 0; if(isset('.$this->object_records.') && !empty('.$this->object_records.')) { foreach('.$this->object_records.' as $row){ $num++;
 						?>
 						<tr>
-							<td></td>'. "\n\t\t\t\t\t\t\t";
+							<td><?php echo $num; ?></td>'. "\n\t\t\t\t\t\t\t";
 
 		$colspan_count = 0;					
 
@@ -1230,14 +1242,19 @@ class '.ucfirst($this->controller_name).' extends MY_Controller {
                           	</td>
                         </tr>
                         <?php } } else { ?>						
-						<tr colspan="<?php echo $colspan_count; ?>">
-							<td>No records</td>
+						<tr>
+							<td colspan="'.$colspan_count.'">No records</td>
 						</tr>
 						<?php } ?>
                     </tbody>
             	</table>
+
+            	</div>	
+
+				</div>
+			</div>
       	</div>
- 	</div>';
+ 	';
 
 		return  $list_view;
 	}
